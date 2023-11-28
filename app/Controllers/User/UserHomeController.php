@@ -16,10 +16,10 @@ class UserHomeController
         $auth = $auth_controller->login_check();
 
         if(!$auth) {
-            require_once __DIR__ . '/../../Views/user/home/login/login.php';
+            require_once $_SERVER['DOCUMENT_ROOT'] . '/app/Views/user/home/login/login.php';
             exit;
         }
 
-        require_once __DIR__ . '/../../Views/user/home/index.php';
+        require_once $_SERVER['DOCUMENT_ROOT'] .  '/app/Views/user/home/index.php';
     }
 }
