@@ -2,21 +2,24 @@
 
 $route = $_SERVER['REQUEST_URI'];
 
+require_once '../app/Controllers/User/UserHomeController.php';
+require_once '../app/Controllers/User/UserAuthController.php';
+require_once '../app/Controllers/Admin/AdminHomeController.php';
+
 switch ($route) {
     case '/':
-        require_once '../app/Controllers/User/UserHomeController.php';
-        $controller = new \App\Controllers\User\UserHomeController();
+        $auth_controller = new \App\Controllers\User\UserAuthController();
+        $controller = new \App\Controllers\User\UserHomeController($auth_controller);
         $controller->index();
         break;
 
     case '/join':
-        require_once '../app/Controllers/User/UserAuthController.php';
+
         $controller = new \App\Controllers\User\UserAuthController();
         $controller->join();
         break;
 
     case '/admin':
-        require_once '../app/Controllers/Admin/AdminHomeController.php';
         $controller = new \App\Controllers\Admin\AdminHomeController();
         $controller->index();
         break;
