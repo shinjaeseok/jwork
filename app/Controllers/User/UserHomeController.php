@@ -4,16 +4,19 @@ namespace App\Controllers\User;
 
 require_once 'UserAuthController.php';
 
-use App\Controllers\User\UserAuthController;
-
 class UserHomeController
 {
+    private $auth;
+
+    public function __construct(AuthInterface $auth)
+    {
+        $this->auth = $auth;
+    }
     public function index()
     {
         $userName = 'John Doe';
 
-        $auth_controller = new UserAuthController();
-        $auth = $auth_controller->login_check();
+        $auth = $this->auth->login_check();
 
         if(!$auth) {
             require_once __DIR__ . '/../../Views/user/home/login/login.php';

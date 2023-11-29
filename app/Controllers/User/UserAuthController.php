@@ -2,7 +2,10 @@
 
 namespace App\Controllers\User;
 
-class UserAuthController
+interface AuthInterface {
+    public function login_check();
+}
+class UserAuthController implements AuthInterface
 {
     public function login_check() {
 
