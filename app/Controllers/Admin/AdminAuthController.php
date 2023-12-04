@@ -6,6 +6,6 @@ class AdminAuthController
 {
     public function login()
     {
-var_dump(1);
+var_dump(2);
     }
 }

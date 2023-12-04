@@ -14,7 +14,6 @@ switch ($route) {
         break;
 
     case '/join':
-
         $controller = new \App\Controllers\User\UserAuthController();
         $controller->join();
         break;
@@ -26,6 +25,6 @@ switch ($route) {
 
     default:
         // 404 Not Found 페이지로 이동하거나 에러 처리
-        echo '404 Not Found';
+        require_once __DIR__ . '/../app/Views/user/templates/404.php';
         break;
 }

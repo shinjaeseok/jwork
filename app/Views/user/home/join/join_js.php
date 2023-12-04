@@ -1,4 +1,6 @@
 <script>
+    function goBack() {
+        window.history.back();
+    }
 
-    console.log(1);
 </script>
