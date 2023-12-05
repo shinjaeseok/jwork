@@ -2,7 +2,7 @@
 <project version="4">
   <component name="SshConfigs">
     <configs>
-      <sshConfig host="13.209.163.144" id="9d726871-7bbd-4ed0-b200-f30077875ae4" keyPath="C:\Users\jooho\Desktop\key.pem" port="22" nameFormat="DESCRIPTIVE" username="root" useOpenSSHConfig="true" />
+      <sshConfig host="13.209.163.144" id="9d726871-7bbd-4ed0-b200-f30077875ae4" keyPath="C:\Users\Administrator\Desktop\서버\key.pem" port="22" nameFormat="DESCRIPTIVE" username="ubuntu" useOpenSSHConfig="true" />
     </configs>
   </component>
 </project>

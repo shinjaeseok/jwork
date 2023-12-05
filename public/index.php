@@ -1,30 +1,24 @@
 <?php
 
+require_once '../config/config.php';
+require_once '../app/routes.php';
+
 $route = $_SERVER['REQUEST_URI'];
+
+//use App\Controllers\User\UserHomeController;
+//use App\Controllers\User\UserAuthController;
+//use App\Controllers\Admin\AdminAuthController;
+//use App\Controllers\Admin\AdminHomeController;
 
 require_once '../app/Controllers/User/UserHomeController.php';
 require_once '../app/Controllers/User/UserAuthController.php';
 require_once '../app/Controllers/Admin/AdminHomeController.php';
 
-switch ($route) {
-    case '/':
-        $auth_controller = new \App\Controllers\User\UserAuthController();
-        $controller = new \App\Controllers\User\UserHomeController($auth_controller);
-        $controller->index();
-        break;
-
-    case '/join':
-        $controller = new \App\Controllers\User\UserAuthController();
-        $controller->join();
-        break;
-
-    case '/admin':
-        $controller = new \App\Controllers\Admin\AdminHomeController();
-        $controller->index();
-        break;
-
-    default:
-        // 404 Not Found 페이지로 이동하거나 에러 처리
-        require_once __DIR__ . '/../app/Views/user/templates/404.php';
-        break;
+if (array_key_exists($route, $routes)) {
+    $handler = explode('@', $routes[$route]);
+    $controller = new $handler[0]();
+    $method = $handler[1];
+    $controller->$method();
+} else {
+    require_once __DIR__ . '/../app/Views/user/templates/404.php';
 }

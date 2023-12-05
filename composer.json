@@ -1,0 +1,15 @@
+{
+    "name": "vendor/jwork",
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/"
+        }
+    },
+    "authors": [
+        {
+            "name": "shinjaeseok",
+            "email": "joohong2000@gmail.com"
+        }
+    ],
+    "require": {}
+}
