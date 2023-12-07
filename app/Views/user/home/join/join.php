@@ -11,13 +11,25 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet"/>
     <!-- MDB -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.0.0/mdb.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/noto-sans-kr@0.1.1/styles.min.css">
 </header>
+
+<style>
+    body {
+        font-family: "Noto Sans Korean", sans-serif;
+    }
+</style>
 
 <main>
     <div class="container  d-flex justify-content-center align-items-center" style="height: 100vh;">
         <div class="row">
             <div class="w-100 p-4 d-flex justify-content-center pb-4">
                 <div style="width: 22rem;">
+
+                    <div class="text-center mb-4">
+                        <img src="https://gw.joohong.work/img/fw_logo.jpg" alt="" style="width: 300px;">
+                    </div>
+
                     <!-- Email input -->
                     <div data-mdb-input-init class="form-outline mb-4">
                         <input form="form" type="input" id="user_id" class="form-control" autocomplete="off">
