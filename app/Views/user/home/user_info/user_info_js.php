@@ -33,7 +33,7 @@
     function view() {
 
         $.ajax({
-            type: "get",
+            type: "post",
             data: {
 
             },

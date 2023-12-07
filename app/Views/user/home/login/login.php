@@ -92,7 +92,7 @@
                 'user_id' : user_id,
                 'user_password' : user_password
             },
-            url: "/user/login",
+            url: "/login/user",
             dataType: "json",
             cache: false,
             async: false,

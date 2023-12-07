@@ -17,7 +17,7 @@
                 'user_password' : user_password,
                 'user_re_password' : user_re_password
             },
-            url: "/user/create",
+            url: "/join/user",
             dataType: "json",
             cache: false,
             async: false,

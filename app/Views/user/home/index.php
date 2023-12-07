@@ -1,5 +1,3 @@
-<?php require_once __DIR__ . '/../../../../config/auth.php'; ?>
-
 <?php require_once __DIR__ . '/../templates/user_header.php'; ?>
 
 <div class="container my-4">

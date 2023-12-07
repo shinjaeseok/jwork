@@ -1,42 +1,31 @@
 <?php
-
 namespace App\Controllers\User;
 
 use App\Controllers\User\UserAuthController;
 
 class UserHomeController
 {
-    //private $auth;
-
-    //public function __construct(AuthInterface $auth)
-    //{
-    //    $this->auth = $auth;
-    //}
     public function index()
     {
-        session_start();
-
-        if(!$_SESSION['user_code']) {
-            header("Location: /login");
-            //require_once __DIR__ . '/../../Views/user/home/login/login.php';
-            exit;
-        }
-
+        UserAuthController::checkSession();
         require_once __DIR__ . '/../../Views/user/home/index.php';
     }
+
     public function userInfo()
     {
+        UserAuthController::checkSession();
         require_once __DIR__ . '/../../Views/user/home/user_info/user_info.php';
     }
+
     public function userInfoSelect()
     {
+        UserAuthController::checkSession();
+        global $db;
+
         $user_code = $_SESSION['user_code'];
 
-        var_dump($user_code);
-        exit;
-
         $sql = "
-                SELECT *
+                SELECT code
                 FROM users
                 WHERE code = '${user_code}'
         ";

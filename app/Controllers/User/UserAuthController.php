@@ -1,17 +1,18 @@
 <?php
 namespace App\Controllers\User;
 
-require_once __DIR__ . "/../../../config/config.php";
-
-interface AuthInterface {
-    public function loginCheck();
-}
-class UserAuthController implements AuthInterface
+class UserAuthController
 {
-    public function loginCheck() {
+    public static function checkSession() {
 
-        return 0;
+        session_start();
+
+        if (!isset($_SESSION['user_code'])) {
+            header("Location: /login");
+            exit();
+        }
     }
+
     public function login()
     {
         require_once __DIR__ . '/../../Views/user/home/login/login.php';
@@ -19,9 +20,9 @@ class UserAuthController implements AuthInterface
 
     public function join()
     {
-
         require_once __DIR__ . '/../../Views/user/home/join/join.php';
     }
+
     public function userCreate()
     {
         global $db;
@@ -157,13 +158,10 @@ class UserAuthController implements AuthInterface
     }
 
     public function logout() {
-
         session_start();
 
-        // 세션 삭제
         session_destroy();
 
-        // 이동
         Header("Location:/");
     }
 }
