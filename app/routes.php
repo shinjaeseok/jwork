@@ -12,7 +12,7 @@ $routes = [
     '/' => '\App\Controllers\User\UserHomeController@index',
     '/user_info' => '\App\Controllers\User\UserHomeController@userInfo',
     '/user_info/select' => '\App\Controllers\User\UserHomeController@userInfoSelect',
-    //'/user_info/info_change' => '\App\Controllers\User\UserHomeController@info_change',
+    '/user_info/save' => '\App\Controllers\User\UserHomeController@userInfoSave',
     //'/user_info/password_change' => '\App\Controllers\User\UserHomeController@password_change',
 
     // Admin Auth

@@ -6,7 +6,6 @@
 </head>
 <body>
 <header>
-
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"/>
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet"/>
@@ -86,7 +85,7 @@
                 </ul>
             </div>
 
-            <?php var_dump($_SESSION['user_code']); if($_SESSION['user_code']) {?>
+            <?php if($_SESSION['user_code']) {?>
                 <!-- Avatar -->
                 <div class="dropdown">
                     <a data-mdb-dropdown-init class="dropdown-toggle d-flex align-items-center hidden-arrow" href="#" id="navbarDropdownMenuAvatar" role="button" aria-expanded="false">
