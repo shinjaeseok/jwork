@@ -49,7 +49,7 @@
                     <a class="nav-link" href="/">Dashboard</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Team</a>
+                    <a class="nav-link" href="/team">Team</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Projects</a>
@@ -62,11 +62,14 @@
         <!-- Right elements -->
         <div class="d-flex align-items-center">
             <!-- Icon -->
+            <!--
             <a class="text-reset me-3" href="#">
                 <i class="fas fa-shopping-cart"></i>
             </a>
+            -->
 
             <!-- Notifications -->
+            <!--
             <div class="dropdown">
                 <a data-mdb-dropdown-init class="text-reset me-3 dropdown-toggle hidden-arrow" href="#" id="navbarDropdownMenuLink" role="button" aria-expanded="false">
                     <i class="fas fa-bell"></i>
@@ -84,6 +87,7 @@
                     </li>
                 </ul>
             </div>
+            -->
 
             <?php if($_SESSION['user_code']) {?>
                 <!-- Avatar -->
@@ -94,9 +98,6 @@
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuAvatar">
                         <li>
                             <a class="dropdown-item" href="/user_info">My profile</a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="#">Settings</a>
                         </li>
                         <li>
                             <a class="dropdown-item" href="/logout">Logout</a>

@@ -27,14 +27,14 @@ class UserAuthController
     {
         global $db;
 
-        $user_id = sanitize($_POST['user_id']);
+        $user_code = sanitize($_POST['user_code']);
         $user_password = sanitize($_POST['user_password']);
         $user_re_password = sanitize($_POST['user_re_password']);
         
-        if (empty($user_id) || empty($user_password) || empty($user_re_password)) {
+        if (empty($user_code) || empty($user_password) || empty($user_re_password)) {
             $result = [
                 'data' => '',
-                'status' => 0,
+                'success' => false,
                 'message' => '입력한 내용을 확인해주세요.'
             ];
             echo json_encode($result);
@@ -44,7 +44,7 @@ class UserAuthController
         if ($user_password != $user_re_password) {
             $result = [
                 'data' => '',
-                'status' => 0,
+                'success' => false,
                 'message' => '비밀번호가 다릅니다.'
             ];
             echo json_encode($result);
@@ -54,7 +54,7 @@ class UserAuthController
         $sql = "
                 SELECT code
                 FROM users
-                WHERE code = '${user_id}'
+                WHERE code = '${user_code}'
         ";
 
         $select_user_code = $db->query($sql)->numRows();
@@ -62,7 +62,7 @@ class UserAuthController
         if ($select_user_code != 0) {
             $result = [
                 'data' => '',
-                'status' => 0,
+                'success' => false,
                 'message' => '이미 가입된 아이디 입니다.'
             ];
             echo json_encode($result);
@@ -74,7 +74,7 @@ class UserAuthController
         $sql = "
                     INSERT INTO users
                     
-                    SET code = '${user_id}',
+                    SET code = '${user_code}',
                     
                         password = '${password}',
                         
@@ -85,12 +85,12 @@ class UserAuthController
 
         if ($result != -1) {
             $temp = [
-                "status" => 1,
+                "success" => true,
                 "message" => "회원가입 완료",
             ];
         } else {
             $temp = [
-                "status" => 0,
+                "success" => false,
                 "message" => "저장 오류",
             ];
         }
@@ -102,13 +102,13 @@ class UserAuthController
     {
         global $db;
 
-        $user_id = sanitize($_POST['user_id']);
+        $user_code = sanitize($_POST['user_code']);
         $user_password = sanitize($_POST['user_password']);
 
-        if (empty($user_id) || empty($user_password)) {
+        if (empty($user_code) || empty($user_password)) {
             $result = [
                 'data' => '',
-                'status' => 0,
+                'success' => false,
                 'message' => '입력한 내용을 확인해주세요.'
             ];
             echo json_encode($result);
@@ -118,7 +118,7 @@ class UserAuthController
         $sql = "
                 SELECT *
                 FROM users
-                WHERE code = '${user_id}'
+                WHERE code = '${user_code}'
         ";
 
         $select_user_data = $db->query($sql)->fetchArray();
@@ -126,7 +126,7 @@ class UserAuthController
         if (!$select_user_data) {
             $result = [
                 'data' => '',
-                'status' => 0,
+                'success' => false,
                 'message' => '회원 정보가 없습니다.'
             ];
             echo json_encode($result);
@@ -136,7 +136,7 @@ class UserAuthController
         if (enc($user_password) != $select_user_data['password']) {
             $result = [
                 'data' => '',
-                'status' => 0,
+                'success' => false,
                 'message' => '회원정보를 확인해주세요.'
             ];
             echo json_encode($result);
@@ -150,9 +150,10 @@ class UserAuthController
 
         $result = [
             'data' => '',
-            'status' => 1,
+            'success' => true,
             'message' => '로그인 성공'
         ];
+
         echo json_encode($result);
         exit;
     }

@@ -1,70 +1,54 @@
 <script>
-    $("#form").on("submit", function() {
-        save();
-        return false;
-    });
+    const { createApp, ref } = Vue
 
-    // 저장
-    function save() {
-        let user_code = $("#user_code").val();
-        let user_password = $("#user_password").val();
-        let user_new_password = $("#user_new_password").val();
-        let user_name = $("#user_name").val();
-        let user_phone = $("#user_phone").val();
-        let user_email = $("#user_email").val();
-        let user_address = $("#user_address").val();
-
-        $.ajax({
-            type: "post",
-            data: {
-                'user_code' : user_code,
-                'user_password' : user_password,
-                'user_new_password' : user_new_password,
-                'user_name' : user_name,
-                'user_phone' : user_phone,
-                'user_email' : user_email,
-                'user_address' : user_address,
-            },
-            url: "/user_info/save",
-            dataType: "json",
-            cache: false,
-            async: false,
-        }).done(function(result) {
-            if (result.status) {
-                alert(result.message);
-            } else {
-                alert(result.message);
+    createApp({
+        data() {
+            return {
+                userData: {
+                    userCode: '',
+                    userPassword: '',
+                    userNewPassword: '',
+                    userName: '',
+                    userPhone: '',
+                    userEmail: '',
+                    userAddress: '',
+                }
             }
-        });
-    }
-
-    function view() {
-
-        $.ajax({
-            type: "post",
-            data: {
-            },
-            url: "/user_info/select",
-            dataType: "json",
-            cache: false,
-            async: false,
-        }).done(function(result) {
-            if (result.status) {
-
-                $("#user_code").val(result.data.code);
-                $("#user_name").val(result.data.name);
-                $("#user_phone").val(result.data.phone);
-                $("#user_email").val(result.data.email);
-                $("#user_address").val(result.data.address);
-
-            } else {
-                alert(result.message);
+        },
+        mounted() {
+            axios.get("/user_info/select").then((response) => {
+                this.userData.userCode = response.data.code;
+                this.userData.userName = response.data.name;
+                this.userData.userPhone = response.data.phone;
+                this.userData.userEmail = response.data.email;
+                this.userData.userAddress = response.data.address;
+            }).catch((error) => {
+                console.error('Error fetching data:', error);
+            });
+        },
+        methods: {
+            saveUserData() {
+                axios.post("/user_info/save", {
+                    user_code: this.userData.userCode,
+                    user_password: this.userData.userPassword,
+                    user_new_password: this.userData.userNewPassword,
+                    user_name: this.userData.userName,
+                    user_phone: this.userData.userPhone,
+                    user_email: this.userData.userEmail,
+                    user_address: this.userData.userAddress,
+                }, { headers: {
+                    'Content-Type': 'multipart/form-data',
+                },
+                })
+                    .then((response) => {
+                        alert(response.data.message);
+                    })
+                    .catch((error) => {
+                        console.error('Error saving data:', error);
+                    });
             }
-        });
-    }
+        },
 
-    $(function (){
-        view();
-    });
+    }).mount('#app')
 
 </script>

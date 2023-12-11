@@ -32,23 +32,7 @@ class UserHomeController
 
         $select_user_data = $db->query($sql)->fetchArray();
 
-        if (!$select_user_data) {
-            $result = [
-                'data' => '',
-                'status' => 0,
-                'message' => '회원 정보가 없습니다.'
-            ];
-            echo json_encode($result);
-            exit;
-        }
-
-        $result = [
-            'data' => $select_user_data,
-            'status' => 1,
-            'message' => ''
-        ];
-
-        echo json_encode($result);
+        echo json_encode($select_user_data);
         exit;
     }
 
@@ -57,7 +41,6 @@ class UserHomeController
         global $db;
 
         $user_code = $_SESSION['user_code'];
-
         $user_password = sanitize($_POST['user_password']);
         $user_password = enc($user_password);
 
@@ -72,7 +55,7 @@ class UserHomeController
         if (!$select_user_data) {
             $result = [
                 'data' => '',
-                'status' => 0,
+                'success' => false,
                 'message' => '비밀번호를 확인해주세요.'
             ];
             echo json_encode($result);
@@ -109,12 +92,12 @@ class UserHomeController
 
         if ($result != -1) {
             $temp = [
-                "status" => 1,
+                "success" => true,
                 "message" => "정보가 수정되었습니다.",
             ];
         } else {
             $temp = [
-                "status" => 0,
+                "success" => false,
                 "message" => "저장 오류",
             ];
         }
