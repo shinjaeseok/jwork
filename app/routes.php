@@ -22,5 +22,5 @@ $routes = [
     // Admin
     '/admin' => '\App\Controllers\Admin\AdminHomeController@index',
 
-    '/api/api_user_login' => '\App\Controllers\User\UserAuthController@apiUserLogin',
+    '/api/api_user_login' => '\App\Controllers\Api\ApiController@apiUserLogin',
 ];
