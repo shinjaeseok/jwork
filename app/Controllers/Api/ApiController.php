@@ -19,7 +19,7 @@ class ApiController
             "message" => "저장 오류",
         ];
 
-        echo json_encode($temp);
+        echo json_encode($temp, JSON_UNESCAPED_UNICODE);
     }
 
 }
