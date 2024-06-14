@@ -4,6 +4,7 @@ require_once '../app/routes.php';
 require_once '../app/Controllers/User/UserHomeController.php';
 require_once '../app/Controllers/User/UserAuthController.php';
 require_once '../app/Controllers/Admin/AdminHomeController.php';
+require_once '../app/Controllers/Api/ApiController.php';
 
 $route = $_SERVER['REQUEST_URI'];
 
